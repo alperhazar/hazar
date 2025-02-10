@@ -36,7 +36,7 @@ begin
     WriteLn(' ');
     WriteLn(' > To decrypt file: hazarengine D File.dat.encrypted File.dat.decrypted Password');
     WriteLn(' ');
-    WriteLn(' Created By: Alper H. | alper@hazar.com ');
+    WriteLn(' Created By: Alper H. ');
     Exit();
   end;
   if ParamCount() < High(Parameters) then
