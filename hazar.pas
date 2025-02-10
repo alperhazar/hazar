@@ -1,9 +1,9 @@
-unit hazar; { Hazar(8/64). PRNG based, OTP stream cipher. }
+unit hazar; { Hazar(8/16). PRNG based, OTP stream cipher. }
 
 interface
 
 {$define HAZAR8}
-//{$define HAZAR64} // This algoritm have "gigantic(524288 Bit Key Size)" key size & period. Designed for far future(maybe?) quantum doomsday.
+//{$define HAZAR16} // This algoritm have "gigantic(524288 Bit Key Size)" key size & period. Designed for far future(maybe?) quantum doomsday.
                     // Don't use for daily operations. Use Hazar8 instead. Extremely slow for personal computers!
 
 const
@@ -11,7 +11,7 @@ const
   DataMax = $FF;
   DataHalf = $7F;
 {$endif}
-{$ifdef HAZAR64}
+{$ifdef HAZAR16}
   DataMax = $FFFF;
   DataHalf = $7FFF;
 {$endif}
@@ -20,7 +20,7 @@ type
   {$ifdef HAZAR8}
   THazarInteger = Byte;
   {$endif}
-  {$ifdef HAZAR64}
+  {$ifdef HAZAR16}
   THazarInteger = Word;
   {$endif}
   THazarData = array [$00..DataMax] of THazarInteger;
