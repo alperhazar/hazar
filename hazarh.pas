@@ -6,8 +6,8 @@ uses
   hazar;
 
 type
-  THazarH = class(THazar) { This algorithm depends on Hazar8 or Hazar64 while build. }
-    private               { HAZAR8 or HAZAR64 compiler directives must be defined at }
+  THazarH = class(THazar) { This algorithm depends on Hazar8 or Hazar16 while build. }
+    private               { HAZAR8 or HAZAR16 compiler directives must be defined at }
       FHash: THazarData;  { main hazar.pas unit. }
     public
       constructor Start(Seed: THazarData; Length: THazarInteger);
