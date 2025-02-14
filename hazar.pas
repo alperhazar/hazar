@@ -3,8 +3,7 @@ unit hazar; { Hazar(8/16). PRNG based, OTP stream cipher. }
 interface
 
 {$define HAZAR8}
-//{$define HAZAR16} // This algoritm have "gigantic(524288 Bit Key Size)" key size & period. Designed for far future(maybe?) quantum doomsday.
-                    // Don't use for daily operations. Use Hazar8 instead. Extremely slow for personal computers!
+//{$define HAZAR16}
 
 const
 {$ifdef HAZAR8}
@@ -23,6 +22,7 @@ type
   {$ifdef HAZAR16}
   THazarInteger = Word;
   {$endif}
+
   THazarData = array [$00..DataMax] of THazarInteger;
   THazar = class
     private
