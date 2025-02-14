@@ -26,6 +26,12 @@ var
   CmdLine, Operation, SourceFile, DestinationFile, Password: shortstring;
   Parameters: array [$00..$04] of shortstring;
 
+  procedure WarnAndExit(Message: shortstring);
+  begin
+    WriteLn(Message);
+    Exit();
+  end;
+
 begin
   if ParamCount() = $00 then
   begin
@@ -36,45 +42,26 @@ begin
     WriteLn(' ');
     WriteLn(' > To decrypt file: hazarengine D File.dat.encrypted File.dat.decrypted Password');
     WriteLn(' ');
-    WriteLn(' Created By: Alper H. ');
+    WriteLn(' Created By: Alper H. | alper@hazar.com ');
     Exit();
   end;
   if ParamCount() < High(Parameters) then
-  begin
-    WriteLn('Not enough parameters for operation! Aborting...');
-    Exit();
-  end;
+    WarnAndExit('Not enough parameters for operation! Aborting...');
   if ParamCount() > High(Parameters) then
-  begin
-    WriteLn('Too many parameters (expected 4) for operation! Aborting...');
-    Exit();
-  end;
+    WarnAndExit('Too many parameters (expected 4) for operation! Aborting...');
   CmdLine := ParamStr($00);
   Operation := ParamStr($01);
   SourceFile := ParamStr($02);
   DestinationFile := ParamStr($03);
   Password := ParamStr($04);
   if ((Operation <> OE) and (Operation <> OD)) then
-  begin
-    WriteLn('Unable to identify requested operation.');
-    WriteLn('Please use E: Encryption, D: Decryption. Given: [' + Operation + ']');
-    Exit();
-  end;
+    WarnAndExit('Unable to identify requested operation.' + #13#10 + 'Please use E: Encryption, D: Decryption. Given: [' + Operation + ']');
   if not FileExists(SourceFile) then
-  begin
-    WriteLn('Source file: [' + SourceFile + '] not found!');
-    Exit();
-  end;
+    WarnAndExit('Source file: [' + SourceFile + '] not found!');
   if FileExists(DestinationFile) then
-  begin
-    WriteLn('Destination file: [' + DestinationFile + '] already exist!');
-    Exit();
-  end;
+    WarnAndExit('Destination file: [' + DestinationFile + '] already exist!');
   if Password = '' then
-  begin
-    WriteLn('Please provide password!');
-    Exit();
-  end;
+    WarnAndExit('Please provide password!');
   PasswordLength := Length(Password);
   for I := $00 to PasswordLength - $01 do
     HazarKey[I] := Byte(Password[I+$01]);
@@ -88,13 +75,8 @@ begin
     Read(EncryptedFileHeaderFile, EncryptedFileHeader);
     CloseFile(EncryptedFileHeaderFile);
     for I := $00 to DataMax do
-    begin
       if GeneratedHash[I] <> EncryptedFileHeader.FileHash[I] then
-      begin
-        WriteLn('Wrong password!');
-        Exit();
-      end;
-    end;
+        WarnAndExit('Wrong password!');
   end
   else
   begin
