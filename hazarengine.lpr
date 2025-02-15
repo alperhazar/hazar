@@ -6,6 +6,9 @@ uses
 const
   OE = 'E';
   OD = 'D';
+  OH = 'H';
+  MinParamCount = $02;
+  MaxParamCount = $04;
 
 type
   RHazarEncryptedFileHeader = record
@@ -17,19 +20,19 @@ var
   I, ReadBytes: Integer;
   HazarOperator: THazar;
   HazarHashOperator: THazarH;
+  HazarFileHashEngine: THazarHFile;
   StartTime, EndTime: TTime;
   HazarData, HazarKey, GeneratedHash: THazarData;
   DataLength, PasswordLength: Int64;
   FileReader, FileWriter: TFileStream;
   EncryptedFileHeaderFile: file of RHazarEncryptedFileHeader;
   EncryptedFileHeader: RHazarEncryptedFileHeader;
-  CmdLine, Operation, SourceFile, DestinationFile, Password: shortstring;
-  Parameters: array [$00..$04] of shortstring;
+  CmdLine, Operation, SourceFile, DestinationFile, Password, HashText: shortstring;
 
   procedure WarnAndExit(Message: shortstring);
   begin
     WriteLn(Message);
-    Exit();
+    Halt;
   end;
 
 begin
@@ -42,22 +45,37 @@ begin
     WriteLn(' ');
     WriteLn(' > To decrypt file: hazarengine D File.dat.encrypted File.dat.decrypted Password');
     WriteLn(' ');
+    WriteLn(' > To get hash of a file: hazarengine H File.dat');
+    WriteLn(' ');
     WriteLn(' Created By: Alper H. | alper@hazar.com ');
     Exit();
   end;
-  if ParamCount() < High(Parameters) then
+  if ParamCount() < MinParamCount then
     WarnAndExit('Not enough parameters for operation! Aborting...');
-  if ParamCount() > High(Parameters) then
+  if ParamCount() > MaxParamCount then
     WarnAndExit('Too many parameters (expected 4) for operation! Aborting...');
   CmdLine := ParamStr($00);
   Operation := ParamStr($01);
+  if ((Operation <> OE) and (Operation <> OD) and (Operation <> OH)) then
+    WarnAndExit('Unable to identify requested operation.' + #13#10 + 'Please use E: Encryption, D: Decryption, H: File Hash Calculation. Given: [' + Operation + ']');
   SourceFile := ParamStr($02);
-  DestinationFile := ParamStr($03);
-  Password := ParamStr($04);
-  if ((Operation <> OE) and (Operation <> OD)) then
-    WarnAndExit('Unable to identify requested operation.' + #13#10 + 'Please use E: Encryption, D: Decryption. Given: [' + Operation + ']');
   if not FileExists(SourceFile) then
     WarnAndExit('Source file: [' + SourceFile + '] not found!');
+  if not (Operation = OH) then
+  begin
+    DestinationFile := ParamStr($03);
+    Password := ParamStr($04);
+  end
+  else
+  begin
+    HashText := '';
+    HazarFileHashEngine := THazarHFile.StartWithFile(SourceFile);
+    GeneratedHash := HazarFileHashEngine.GetFileHash();
+    for I := $00 to High(THazarData) do
+      HashText := HashText + IntToHex(GeneratedHash[I]);
+    WriteLn(HashText);
+    Exit();
+  end;
   if FileExists(DestinationFile) then
     WarnAndExit('Destination file: [' + DestinationFile + '] already exist!');
   if Password = '' then

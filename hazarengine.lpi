@@ -37,6 +37,11 @@
               <RunWithoutDebug Value="True"/>
             </Debugging>
           </Linking>
+          <Other>
+            <CompilerMessages>
+              <IgnoredMessages idx5058="True" idx5057="True" idx5037="True" idx5036="True"/>
+            </CompilerMessages>
+          </Other>
         </CompilerOptions>
       </Item>
     </BuildModes>
