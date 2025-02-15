@@ -1,7 +1,7 @@
 program hazarengine;
 
 uses
-  sysutils, Classes, hazar, hazarh;
+  sysutils, Classes, hazar, tuz, hazarh;
 
 const
   OE = 'E';
@@ -19,7 +19,7 @@ type
 var
   I, ReadBytes: Integer;
   HazarOperator: THazar;
-  HazarHashOperator: THazarH;
+  HashOperator: TTuz;
   HazarFileHashEngine: THazarHFile;
   StartTime, EndTime: TTime;
   HazarData, HazarKey, GeneratedHash: THazarData;
@@ -27,12 +27,13 @@ var
   FileReader, FileWriter: TFileStream;
   EncryptedFileHeaderFile: file of RHazarEncryptedFileHeader;
   EncryptedFileHeader: RHazarEncryptedFileHeader;
-  CmdLine, Operation, SourceFile, DestinationFile, Password, HashText: shortstring;
+  CmdLine, Operation, SourceFile, DestinationFile, Password: shortstring;
+  HashText: string;
 
   procedure WarnAndExit(Message: shortstring);
   begin
     WriteLn(Message);
-    Halt;
+    Halt();
   end;
 
 begin
@@ -71,10 +72,10 @@ begin
     HashText := '';
     HazarFileHashEngine := THazarHFile.StartWithFile(SourceFile);
     GeneratedHash := HazarFileHashEngine.GetFileHash();
-    for I := $00 to High(THazarData) do
+    for I := $00 to High(GeneratedHash) do
       HashText := HashText + IntToHex(GeneratedHash[I]);
-    WriteLn(HashText);
-    Exit();
+    HazarFileHashEngine.Free();
+    WarnAndExit(HashText);
   end;
   if FileExists(DestinationFile) then
     WarnAndExit('Destination file: [' + DestinationFile + '] already exist!');
@@ -83,9 +84,11 @@ begin
   PasswordLength := Length(Password);
   for I := $00 to PasswordLength - $01 do
     HazarKey[I] := Byte(Password[I+$01]);
-  HazarHashOperator := THazarH.Start(HazarKey, PasswordLength-$01);
+  HashOperator := TTuz.Init();
+  HashOperator.Feed(HazarKey, PasswordLength-$01);
   FillChar(GeneratedHash, SizeOf(GeneratedHash), $00);
-  GeneratedHash := HazarHashOperator.Feed(HazarKey);
+  GeneratedHash := HashOperator.GetTuzHash();
+  HashOperator.Free();
   if Operation = OD then
   begin
     AssignFile(EncryptedFileHeaderFile, SourceFile);

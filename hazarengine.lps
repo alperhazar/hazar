@@ -7,23 +7,20 @@
       <Unit>
         <Filename Value="hazarengine.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="15"/>
-        <CursorPos Y="34"/>
-        <UsageCount Value="40"/>
+        <CursorPos X="31" Y="4"/>
+        <UsageCount Value="42"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="hazarh.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="41" Y="76"/>
-        <UsageCount Value="40"/>
+        <CursorPos X="24" Y="6"/>
+        <UsageCount Value="42"/>
       </Unit>
       <Unit>
         <Filename Value="hazar.pas"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="23"/>
         <UsageCount Value="15"/>
       </Unit>
       <Unit>
@@ -52,15 +49,66 @@
         <EditorIndex Value="-1"/>
         <UsageCount Value="9"/>
       </Unit>
+      <Unit>
+        <Filename Value="tuz.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="1">
+    <JumpHistory HistoryIndex="12">
       <Position>
         <Filename Value="hazarengine.lpr"/>
         <Caret Line="4" Column="32"/>
       </Position>
       <Position>
         <Filename Value="hazarengine.lpr"/>
-        <Caret Line="35" Column="13" TopLine="3"/>
+        <Caret Line="18" Column="26"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="22" Column="26" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="23" Column="3" TopLine="15"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="73" Column="7" TopLine="65"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="74" Column="7" TopLine="66"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="78" Column="7" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="88" Column="35" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="89" Column="54" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="92" Column="27" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="22" Column="15" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="5" Column="31"/>
+      </Position>
+      <Position>
+        <Filename Value="hazarengine.lpr"/>
+        <Caret Line="4" Column="31"/>
       </Position>
     </JumpHistory>
     <RunParams>
