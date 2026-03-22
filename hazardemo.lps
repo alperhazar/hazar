@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="hazardemo.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="91"/>
+        <CursorPos X="10" Y="40"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="hazardel.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="51" Y="88"/>
+        <UsageCount Value="25"/>
+      </Unit>
+      <Unit>
+        <Filename Value="hazar.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="25"/>
+      </Unit>
+      <Unit>
+        <Filename Value="hazario.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="71" Y="9"/>
+        <UsageCount Value="25"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="6">
+      <Position>
+        <Filename Value="hazardemo.lpr"/>
+        <Caret Line="180" Column="5"/>
+      </Position>
+      <Position>
+        <Filename Value="hazardemo.lpr"/>
+        <Caret Line="180" Column="5"/>
+      </Position>
+      <Position>
+        <Filename Value="hazardemo.lpr"/>
+        <Caret Line="91" Column="25" TopLine="85"/>
+      </Position>
+      <Position>
+        <Filename Value="hazardemo.lpr"/>
+        <Caret Line="121" Column="45" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="hazardemo.lpr"/>
+        <Caret Line="87" Column="12"/>
+      </Position>
+      <Position>
+        <Filename Value="hazardemo.lpr"/>
+        <Caret Line="7" Column="6"/>
+      </Position>
+      <Position>
+        <Filename Value="hazardemo.lpr"/>
+        <Caret Line="40" Column="10"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
